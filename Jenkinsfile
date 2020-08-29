@@ -80,7 +80,7 @@ pipeline {
             steps{
                 script{
                     conatiner = false
-                    container = bat(script: "@docker ps -aqf name=Java_App_instances", returnStdout: true).trim();
+                    container = bat(script: "@docker ps -aqf name=java_app_instances", returnStdout: true).trim();
                     if ("$container"){
                         bat "docker stop $container"
                         bat "docker rm -f $container"
