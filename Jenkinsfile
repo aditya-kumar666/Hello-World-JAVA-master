@@ -72,7 +72,7 @@ pipeline {
         }
         stage('Push to dockerhub'){
             steps{
-                bat "docker login dtr.nagarro.com:443 -u aditya.singh01@nagarro.com -p Adi_kum012345"
+                bat "docker login dtr.nagarro.com:443"
                 //bat "docker login -u adityakumar666 -p Adi_kum6"
                 bat "docker push dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
