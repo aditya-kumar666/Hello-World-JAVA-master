@@ -36,7 +36,7 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
+                    archiveArtifacts 'target/*.war'
                 }
             }            
         }
@@ -67,13 +67,13 @@ pipeline {
         }
         stage('Docker Image'){
             steps{
-                bat "docker build -t adityakumar666/Java_App:$Build_NUMBER --no-cache -f Dockerfile ."
+                bat "docker build -t adityakumar666/java_app:$Build_NUMBER --no-cache -f Dockerfile ."
             }
         }
         stage('Push to dockerhub'){
             steps{
                 bat "docker login -u adityakumar666 -p Adi_kum6"
-                bat "docker push adityakumar666/Java_App:$BUILD_NUMBER"
+                bat "docker push adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
         stage('Stop running container'){
@@ -90,7 +90,7 @@ pipeline {
         }
         stage('Docker Deployment'){
             steps {
-                bat "docker run --name Java_App_instances -d -p 7000:8080 adityakumar666/Java_App:$BUILD_NUMBER"
+                bat "docker run --name java_app_instances -d -p 7000:8080 adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
     }
