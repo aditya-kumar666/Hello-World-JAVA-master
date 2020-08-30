@@ -89,7 +89,7 @@ pipeline {
         }
         stage('Docker Deployment'){
             steps {
-                bat "docker run --name java_app_instances -d -p 7000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "docker run --name java_app_instances -d -p 6000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
     }
