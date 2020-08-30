@@ -51,9 +51,9 @@ pipeline {
             steps{
                 rtMavenDeployer(
                    id: 'deployer',
-                   serverId: 'Artifactory Version 6.20.1',
-                   releaseRepo: 'Jenkins-release',
-                   snapshotRepo: 'Jenkins-snapshot'
+                   serverId: '123456789@artifactory',
+                   releaseRepo: 'CI-Automation-JAVA',
+                   snapshotRepo: 'CI-Automation-JAVA'
                 )   
                 rtMavenRun(
                     pom: 'pom.xml',
@@ -61,7 +61,7 @@ pipeline {
                     deployerId: 'deployer'
                 )
                 rtPublishBuildInfo(
-                    serverId: 'Artifactory Version 6.20.1'
+                    serverId: '123456789@artifactory'
                 )
             }
         }
@@ -89,7 +89,7 @@ pipeline {
         }
         stage('Docker Deployment'){
             steps {
-                bat "docker run --name java_app_instances -d -p 7000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "docker run --name java_app_instances -d -p 6000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
     }
