@@ -50,7 +50,7 @@ pipeline {
         stage('Artifactory'){
             steps{
                 rtMavenDeployer(
-                   id: 'deployer',
+                   id: 'deployers',
                    serverId: '123456789@artifactory',
                    releaseRepo: 'CI-Automation-JAVA',
                    snapshotRepo: 'CI-Automation-JAVA'
@@ -58,7 +58,7 @@ pipeline {
                 rtMavenRun(
                     pom: 'pom.xml',
                     goals: 'clean package',
-                    deployerId: 'deployer'
+                    deployerId: 'deployers'
                 )
                 rtPublishBuildInfo(
                     serverId: '123456789@artifactory'
