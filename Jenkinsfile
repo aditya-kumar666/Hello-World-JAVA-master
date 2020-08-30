@@ -70,7 +70,7 @@ pipeline {
                 bat "docker build -t dtr.nagarro.com:443/adityakumar666/java_app:$Build_NUMBER --no-cache -f Dockerfile ."
             }
         }
-        stage('Push to dockerhub'){
+        stage('Push to docker:dtr'){
             steps{
                 bat "docker push dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
