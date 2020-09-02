@@ -40,13 +40,13 @@ pipeline {
                 }
             }            
         }
-        //stage('Sonar Analysis'){
-        //    steps{
-        //        withSonarQubeEnv('Sonar_Test'){
-        //            bat "mvn sonar:sonar"
-        //        }
-        //    }
-        //}
+        stage('Sonar Analysis'){
+           steps{
+               withSonarQubeEnv('Test_Sonar'){
+                   bat "mvn sonar:sonar"
+               }
+           }
+        }
         stage('Artifactory'){
             steps{
                 rtMavenDeployer(
