@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
-        maven "Maven_local"
+        maven "Maven3"
     }
     
     options{
@@ -22,7 +22,7 @@ pipeline {
     }
 
     stages {
-        stage('Build & Test') {
+        stage('Build') {
             steps {
                 // Get some code from a GitHub repository
                 git 'https://github.com/aditya-kumar666/Hello-World-JAVA-master.git'
@@ -32,13 +32,15 @@ pipeline {
             }
 		
             post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.war'
                 }
             }            
+        }
+        stage('Unit Testing'){
+            steps{
+                bat 'mvn test'
+            }
         }
         stage('Sonar Analysis'){
            steps{
