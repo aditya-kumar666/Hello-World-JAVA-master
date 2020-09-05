@@ -94,5 +94,10 @@ pipeline {
                 bat "docker run --name java_app_instances -d -p 6000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
+        stage('Helm Chart Deployment'){
+            steps{
+                bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+            }
+        }
     }
 }
