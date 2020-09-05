@@ -72,11 +72,11 @@ pipeline {
                 bat "docker build -t dtr.nagarro.com:443/i_adityasingh01_master:$Build_NUMBER --no-cache -f Dockerfile ."
             }
         }
-        stage('Push to docker:dtr'){
-            steps{
-                //bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
-            }
-        }
+        // stage('Push to docker:dtr'){
+        //     steps{
+        //         bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
+        //     }
+        // }
         stage('Stop running container'){
             steps{
                 script{
