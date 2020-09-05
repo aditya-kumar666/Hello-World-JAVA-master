@@ -74,7 +74,7 @@ pipeline {
         }
         stage('Push to docker:dtr'){
             steps{
-                bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
+                //bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
         stage('Stop running container'){
