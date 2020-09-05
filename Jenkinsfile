@@ -96,7 +96,7 @@ pipeline {
         }
         stage('Helm Chart Deployment'){
             steps{
-                bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "helm upgrade --install --force nagp-assignments aditya-nagp-assignments --set image=dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
             }
         }
     }
