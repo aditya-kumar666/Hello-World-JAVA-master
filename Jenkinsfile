@@ -69,19 +69,19 @@ pipeline {
         }
         stage('Docker Image'){
             steps{
-                bat "docker build -t dtr.nagarro.com:443/adityakumar666/java_app:$Build_NUMBER --no-cache -f Dockerfile ."
+                bat "docker build -t dtr.nagarro.com:443/i_adityasingh01_master:$Build_NUMBER --no-cache -f Dockerfile ."
             }
         }
         stage('Push to docker:dtr'){
             steps{
-                bat "docker push dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
         stage('Stop running container'){
             steps{
                 script{
                     conatiner = false
-                    container = bat(script: "@docker ps -aqf name=java_app_instances", returnStdout: true).trim();
+                    container = bat(script: "@docker ps -aqf name=c_adityasingh01_master", returnStdout: true).trim();
                     if ("$container"){
                         bat "docker stop $container"
                         bat "docker rm -f $container"
@@ -91,13 +91,12 @@ pipeline {
         }
         stage('Docker Deployment'){
             steps {
-                bat "docker run --name java_app_instances -d -p 6000:8080 dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "docker run --name c_adityasingh01_master -d -p 6000:8080 dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
         stage('Helm Chart Deployment'){
             steps{
-                bat "kubectl create ns aditya-java-assignment-$BUILD_NUMBER"
-                bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/adityakumar666/java_app:$BUILD_NUMBER"
+                bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
     }
