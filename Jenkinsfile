@@ -100,7 +100,7 @@ pipeline {
         }
         stage('Helm Chart Deployment'){
             steps{
-                withKubeConfig([file(credentialsId: 'kubecreds', serverUrl: 'https://kubernetes.docker.internal:6443')]) {
+                withKubeConfig([credentialsId: 'kubecreds', serverUrl: 'https://kubernetes.docker.internal:6443']) {
                     bat "kubectl version"
                     bat "helm version"
                     bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
