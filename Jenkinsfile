@@ -28,6 +28,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo "home: $UserProfile"
                 // Get some code from a GitHub repository
                 git 'https://github.com/aditya-kumar666/Hello-World-JAVA-master.git'
 		
