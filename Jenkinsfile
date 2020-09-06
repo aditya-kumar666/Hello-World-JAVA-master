@@ -21,9 +21,9 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    // environment{
-    //     KUBECONFIG = 'C:\\Users\\adityasingh01\\.kube\\config'
-    // }
+    environment{
+        KUBECONFIG = 'C:\\Users\\adityasingh01\\.kube\\config'
+    }
 
     stages {
         stage('Build') {
