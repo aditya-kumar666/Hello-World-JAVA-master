@@ -21,9 +21,9 @@ pipeline {
         disableConcurrentBuilds()
     }
 
-    environment{
-        KUBECONFIG = 'C:\\Users\\adityasingh01\\.kube\\config'
-    }
+    // environment{
+    //     KUBECONFIG = 'C:\\Users\\adityasingh01\\.kube\\config'
+    // }
 
     stages {
         stage('Build') {
@@ -100,7 +100,7 @@ pipeline {
         }
         stage('Helm Chart Deployment'){
             steps{
-                echo "home : $HOME"
+                echo "home : $KUBECONFIG"
                 bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
