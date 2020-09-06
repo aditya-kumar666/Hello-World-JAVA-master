@@ -49,7 +49,7 @@ pipeline {
                }
            }
         }
-        stage('Artifactory'){
+        stage('Upload to Artifactory'){
             steps{
                 rtMavenDeployer(
                    id: 'deployer',
@@ -72,12 +72,7 @@ pipeline {
                 bat "docker build -t dtr.nagarro.com:443/i_adityasingh01_master:$Build_NUMBER --no-cache -f Dockerfile ."
             }
         }
-        // stage('Push to docker:dtr'){
-        //     steps{
-        //         bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
-        //     }
-        // }
-        stage('Stop running container'){
+        stage('PrecontainerCheck'){
             steps{
                 script{
                     conatiner = false
@@ -89,6 +84,11 @@ pipeline {
                 }
             }
         }
+        // stage('PushtoDTR'){
+        //     steps{
+        //         bat "docker push dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
+        //     }
+        // }
         stage('Docker Deployment'){
             steps {
                 bat "docker run --name c_adityasingh01_master -d -p 6000:8080 dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
