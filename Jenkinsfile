@@ -100,6 +100,7 @@ pipeline {
         }
         stage('Helm Chart Deployment'){
             steps{
+                echo "home : $HOME"
                 bat "helm upgrade --install --force nagp-assignment aditya-nagp-assignment --set image=dtr.nagarro.com:443/i_adityasingh01_master:$BUILD_NUMBER"
             }
         }
