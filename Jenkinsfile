@@ -100,7 +100,7 @@ pipeline {
         }
         stage('Helm Chart Deployment'){
             steps{
-                withKubeConfig([kubeconfigFile(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+                withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
                     bat "use $KUBECONFIG"
                     bat "kubectl version"
                     bat "helm version"
